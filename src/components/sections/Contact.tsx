@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Mail, Phone, Send, CheckCircle, AlertCircle } from "lucide-react";
+import ScrollReveal from "@/src/components/ui/ScrollReveal";
 
 const CONTACT_CARDS = [
   {
@@ -11,6 +12,7 @@ const CONTACT_CARDS = [
     action: "Write Me",
     href: "mailto:chirag@example.com",
     id: "contact-card-email",
+    color: "#EA4335",
   },
   {
     icon: Phone,
@@ -19,6 +21,7 @@ const CONTACT_CARDS = [
     action: "Write Me",
     href: "https://wa.me/919876543210",
     id: "contact-card-whatsapp",
+    color: "#25D366",
   },
   {
     icon: Send,
@@ -27,6 +30,7 @@ const CONTACT_CARDS = [
     action: "Write Me",
     href: "https://t.me/chirag_dev",
     id: "contact-card-telegram",
+    color: "#0088cc",
   },
 ];
 
@@ -51,30 +55,60 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section" style={{ background: "var(--bg)" }}>
-      <div className="container">
+    <section id="contact" className="section" style={{ background: "var(--bg-card)" }}>
+      <ScrollReveal className="container">
+        {/* Main section header */}
+        <div className="section-header">
+          <h2 className="section-title text-center">Get in touch</h2>
+          <p className="section-subtitle text-center">Contact Me</p>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-16 max-w-4xl mx-auto">
           {/* Left — "Talk to me" */}
           <div>
-            <h2 className="section-title mb-1" style={{ textAlign: "left", fontSize: "1.75rem" }}>
+            <h3 style={{ textAlign: "center", fontSize: "1.25rem", fontWeight: 500, color: "var(--fg)", marginBottom: "1.5rem" }}>
               Talk to me
-            </h2>
-            <div className="flex flex-col gap-4 mt-6">
-              {CONTACT_CARDS.map(({ icon: Icon, title, value, action, href, id }) => (
-                <div key={id} id={id} className="contact-card">
+            </h3>
+            <div className="flex flex-col gap-4">
+              {CONTACT_CARDS.map(({ icon: Icon, title, value, action, href, id, color }) => (
+                <div
+                  key={id}
+                  id={id}
+                  className="flex flex-col items-center gap-2 rounded-2xl border border-neutral-200/50 dark:border-neutral-800/40 bg-white/40 dark:bg-neutral-900/20 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 cursor-default group"
+                  style={{
+                    padding: "1.25rem 1rem",
+                    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 2px 4px -1px rgba(0, 0, 0, 0.005)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = color;
+                    e.currentTarget.style.boxShadow = `0 12px 24px -8px ${color}30`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "";
+                    e.currentTarget.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 2px 4px -1px rgba(0, 0, 0, 0.005)";
+                  }}
+                >
+                  {/* Brand icon container */}
                   <div
-                    className="w-11 h-11 rounded-full flex items-center justify-center"
-                    style={{ background: "var(--bg)", border: "1px solid var(--border)" }}
+                    className="rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                    style={{
+                      width: "3rem",
+                      height: "3rem",
+                      background: `${color}0d`, // ~5% opacity
+                      color: color,
+                      border: `1px solid ${color}20`, // ~12% opacity
+                    }}
                   >
-                    <Icon size={20} strokeWidth={1.5} style={{ color: "var(--fg)" }} />
+                    <Icon size={20} strokeWidth={1.5} style={{ display: "block" }} />
                   </div>
-                  <p className="font-bold text-sm">{title}</p>
+                  <p className="font-bold text-sm" style={{ color: "var(--fg)" }}>{title}</p>
                   <p className="text-sm" style={{ color: "var(--fg-muted)" }}>{value}</p>
                   <a
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
                     rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="btn-link text-xs mt-1"
+                    className="btn-link text-xs mt-1 font-semibold group-hover:text-[var(--fg)]"
+                    style={{ color: "var(--fg-muted)" }}
                   >
                     {action} <span style={{ fontSize: "1rem" }}>→</span>
                   </a>
@@ -85,13 +119,12 @@ export default function Contact() {
 
           {/* Right — Form */}
           <div>
-            <h2 className="section-title mb-1" style={{ textAlign: "left", fontSize: "1.75rem" }}>
+            <h3 style={{ textAlign: "center", fontSize: "1.25rem", fontWeight: 500, color: "var(--fg)", marginBottom: "1.5rem" }}>
               Write me your project
-            </h2>
-            <form id="contact-form" onSubmit={handleSubmit} className="flex flex-col gap-5 mt-6">
+            </h3>
+            <form id="contact-form" onSubmit={handleSubmit} className="flex flex-col gap-5">
               {/* Name */}
               <div className="form-field">
-                <span className="form-field-label">Name</span>
                 <input
                   id="contact-name"
                   name="name"
@@ -106,7 +139,6 @@ export default function Contact() {
 
               {/* Email */}
               <div className="form-field">
-                <span className="form-field-label">Email</span>
                 <input
                   id="contact-email"
                   name="email"
@@ -121,7 +153,6 @@ export default function Contact() {
 
               {/* Project / Message */}
               <div className="form-field">
-                <span className="form-field-label">Project</span>
                 <textarea
                   id="contact-message"
                   name="message"
@@ -186,7 +217,7 @@ export default function Contact() {
             </form>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

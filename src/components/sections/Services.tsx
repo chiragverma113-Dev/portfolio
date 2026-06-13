@@ -1,4 +1,5 @@
 import { LayoutDashboard, Code2, Database, ArrowRight } from "lucide-react";
+import ScrollReveal from "@/src/components/ui/ScrollReveal";
 
 const SERVICES = [
   {
@@ -23,8 +24,8 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <section id="services" className="section" style={{ background: "var(--bg)" }}>
-      <div className="container">
+    <section id="services" className="section" style={{ background: "var(--bg-card)" }}>
+      <ScrollReveal className="container">
         <div className="section-header">
           <h2 className="section-title">Services</h2>
           <p className="section-subtitle">What I offer</p>
@@ -57,7 +58,7 @@ export default function Services() {
             </div>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

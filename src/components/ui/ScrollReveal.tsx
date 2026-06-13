@@ -21,20 +21,27 @@ export default function ScrollReveal({
     const el = ref.current;
     if (!el) return;
 
+    let timeoutId: ReturnType<typeof setTimeout>;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
+          timeoutId = setTimeout(() => {
             el.classList.add("visible");
           }, delay);
-          observer.unobserve(el);
+        } else {
+          clearTimeout(timeoutId);
+          el.classList.remove("visible");
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.10, rootMargin: "0px 0px -40px 0px" }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
   }, [delay]);
 
   const classMap = {

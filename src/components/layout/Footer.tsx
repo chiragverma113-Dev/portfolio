@@ -1,6 +1,8 @@
 "use client";
 
-import { GithubIcon, LinkedinIcon } from "@/src/components/ui/BrandIcons";
+import React from "react";
+import { ArrowUp } from "lucide-react";
+import { FacebookIcon, InstagramIcon, TwitterIcon } from "@/src/components/ui/BrandIcons";
 
 const LINKS = ["About", "Projects", "Qualification"];
 
@@ -9,27 +11,142 @@ export default function Footer() {
     document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer
-      className="py-10 border-t text-center"
-      style={{ borderColor: "var(--border)", background: "var(--bg)" }}
+      className="border-t text-center relative"
+      style={{
+        borderColor: "var(--border)",
+        background: "var(--bg)",
+        paddingTop: "5.5rem",
+        paddingBottom: "5.5rem",
+      }}
     >
+      <style>{`
+        .footer-name {
+          font-weight: 700;
+          font-size: 1.25rem;
+          color: var(--fg);
+          margin-bottom: 1.5rem;
+          letter-spacing: -0.02em;
+        }
+
+        .footer-nav {
+          display: flex;
+          justify-content: center;
+          gap: 2rem;
+          margin-bottom: 1.75rem;
+        }
+
+        .footer-nav-link {
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-size: 0.9375rem;
+          font-weight: 500;
+          color: var(--fg);
+          transition: color 0.2s ease;
+        }
+
+        .footer-nav-link:hover {
+          color: var(--fg-muted);
+        }
+
+        .footer-socials {
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+          margin-bottom: 2.25rem;
+        }
+
+        .footer-social-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 38px;
+          height: 38px;
+          border-radius: 8px;
+          background: #18181b;
+          color: #ffffff;
+          transition: transform 0.2s ease, background-color 0.2s ease;
+          text-decoration: none;
+        }
+
+        .footer-social-link:hover {
+          transform: translateY(-2px);
+          background: #27272a;
+        }
+
+        .dark .footer-social-link {
+          background: #27272a;
+          color: #f4f4f5;
+        }
+
+        .dark .footer-social-link:hover {
+          background: #3f3f46;
+        }
+
+        .footer-copyright {
+          font-size: 0.75rem;
+          color: var(--fg-subtle);
+        }
+
+        .scroll-top-btn {
+          position: absolute;
+          right: 3rem;
+          bottom: 5rem;
+          width: 38px;
+          height: 38px;
+          border-radius: 8px;
+          background: #18181b;
+          color: #ffffff;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.2s ease, background-color 0.2s ease;
+          z-index: 100;
+        }
+
+        .scroll-top-btn:hover {
+          transform: translateY(-2px);
+          background: #27272a;
+        }
+
+        .dark .scroll-top-btn {
+          background: #27272a;
+          color: #f4f4f5;
+        }
+
+        .dark .scroll-top-btn:hover {
+          background: #3f3f46;
+        }
+
+        @media (max-width: 768px) {
+          .footer-nav {
+            gap: 1.5rem;
+          }
+          .scroll-top-btn {
+            right: 1.5rem;
+            bottom: 4rem;
+          }
+        }
+      `}</style>
+
       <div className="container">
-        <p className="font-bold text-base mb-5">Chirag Verma</p>
+        <p className="footer-name">Chirag Verma</p>
 
         {/* Nav links */}
-        <div className="flex justify-center gap-8 mb-5">
+        <div className="footer-nav">
           {LINKS.map((l) => (
             <button
               key={l}
               onClick={() => scrollTo(l)}
-              className="text-sm font-medium transition-colors"
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                color: "var(--fg-muted)",
-              }}
+              className="footer-nav-link"
             >
               {l}
             </button>
@@ -37,10 +154,11 @@ export default function Footer() {
         </div>
 
         {/* Social icons */}
-        <div className="flex justify-center gap-3 mb-6">
+        <div className="footer-socials">
           {[
-            { href: "https://github.com", label: "GitHub", Icon: GithubIcon, id: "footer-github" },
-            { href: "https://linkedin.com", label: "LinkedIn", Icon: LinkedinIcon, id: "footer-linkedin" },
+            { href: "https://facebook.com", label: "Facebook", Icon: FacebookIcon, id: "footer-facebook" },
+            { href: "https://instagram.com", label: "Instagram", Icon: InstagramIcon, id: "footer-instagram" },
+            { href: "https://twitter.com", label: "Twitter", Icon: TwitterIcon, id: "footer-twitter" },
           ].map(({ href, label, Icon, id }) => (
             <a
               key={id}
@@ -49,17 +167,28 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="floating-social-icon"
+              className="footer-social-link"
             >
-              <Icon size={15} />
+              <Icon size={16} />
             </a>
           ))}
         </div>
 
-        <p className="text-xs" style={{ color: "var(--fg-subtle)" }}>
-          © {new Date().getFullYear()} Chirag Verma. All rights reserved.
+        {/* Copyright */}
+        <p className="footer-copyright">
+          © chiragverma. All rights reserved
         </p>
+
       </div>
+
+      {/* Scroll To Top Button (Absolute relative to footer viewport) */}
+      <button
+        onClick={scrollToTop}
+        className="scroll-top-btn"
+        aria-label="Scroll to top"
+      >
+        <ArrowUp size={16} strokeWidth={2.5} />
+      </button>
     </footer>
   );
 }

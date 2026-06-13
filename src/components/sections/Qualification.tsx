@@ -1,190 +1,230 @@
 import { GraduationCap, Briefcase, Calendar } from "lucide-react";
+import ScrollReveal from "@/src/components/ui/ScrollReveal";
 
-const EDUCATION = [
+const TIMELINE_ITEMS = [
   {
+    id: "edu-1",
+    type: "education",
     title: "Bachelor of Technology",
     institution: "UIET, Kurukshetra",
     period: "2019 - 2023",
-    id: "edu-1",
   },
   {
-    title: "12th Sr. Secondary",
-    institution: "M.R.M. Public Sr. Sec. School, Jhajjar",
-    period: "2017 - 2018",
-    id: "edu-2",
-  },
-  {
-    title: "10th Matriculation",
-    institution: "R.S. Modern Public School, Jhajjar",
-    period: "2015 - 2016",
-    id: "edu-3",
-  },
-];
-
-const EXPERIENCE = [
-  {
+    id: "exp-1",
+    type: "experience",
     title: "Frontend Developer",
     institution: "Automate Business",
     period: "Jan 2024 - Present",
-    id: "exp-1",
   },
   {
+    id: "edu-2",
+    type: "education",
+    title: "12th Sr. Secondary",
+    institution: "M.R.M. Public Sr. Sec. School, Jhajjar",
+    period: "2017 - 2018",
+  },
+  {
+    id: "exp-2",
+    type: "experience",
     title: "Junior Web Developer",
     institution: "Freelance",
     period: "Jun 2022 - Dec 2023",
-    id: "exp-2",
+  },
+  {
+    id: "edu-3",
+    type: "education",
+    title: "10th Matriculation",
+    institution: "R.S. Modern Public School, Jhajjar",
+    period: "2015 - 2016",
   },
 ];
 
 export default function Qualification() {
+  const educationItems = TIMELINE_ITEMS.filter((item) => item.type === "education");
+  const experienceItems = TIMELINE_ITEMS.filter((item) => item.type === "experience");
+
   return (
     <section id="qualification" className="section" style={{ background: "var(--bg-card)" }}>
-      <div className="container">
+      <style>{`
+        .qualification-columns {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          width: 100%;
+          max-width: 960px;
+          margin: 0 auto;
+          padding: 0 1rem;
+        }
+
+        .qualification-col {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .qualification-col-header {
+          display: flex;
+          align-items: center;
+          gap: 0.625rem;
+          font-weight: 700;
+          font-size: 1.25rem;
+          color: var(--fg);
+          margin-bottom: 2.25rem;
+          border-bottom: 1px solid var(--border);
+          padding-bottom: 0.75rem;
+        }
+
+        .qualification-col-header-icon {
+          color: var(--accent);
+        }
+
+        .timeline-container {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 2.25rem;
+        }
+
+        .timeline-line {
+          position: absolute;
+          top: 8px;
+          bottom: 8px;
+          width: 2px;
+          background: var(--border);
+          left: 5px;
+        }
+
+        .timeline-item {
+          position: relative;
+          padding-left: 1.75rem;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .timeline-dot {
+          position: absolute;
+          left: 5px;
+          top: 8px;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: var(--fg-muted);
+          border: 2px solid var(--bg-card);
+          box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.03);
+          transform: translateX(-50%);
+          transition: all 0.3s ease;
+          z-index: 2;
+        }
+
+        .timeline-item:hover .timeline-dot {
+          background: var(--fg);
+          transform: translateX(-50%) scale(1.3);
+          box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.06);
+        }
+
+        .dark .timeline-item:hover .timeline-dot {
+          box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.08);
+        }
+
+        .timeline-content {
+          transition: transform 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+        }
+
+        .timeline-item:hover .timeline-content {
+          transform: translateX(4px);
+        }
+
+        .timeline-title {
+          font-weight: 700;
+          font-size: 0.95rem;
+          color: var(--fg);
+          line-height: 1.3;
+        }
+
+        .timeline-institution {
+          font-size: 0.75rem;
+          color: var(--fg-muted);
+          margin-top: 0.25rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .timeline-period-row {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.375rem;
+          font-size: 0.75rem;
+          color: var(--fg-subtle);
+        }
+
+        @media (max-width: 768px) {
+          .qualification-columns {
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+          }
+        }
+      `}</style>
+
+      <ScrollReveal className="container">
         <div className="section-header">
-          <h2 className="section-title">Qualification</h2>
-          <p className="section-subtitle">My Personal Journey</p>
+          <h2 className="section-title text-center">Qualification</h2>
+          <p className="section-subtitle text-center">My Personal Journey</p>
         </div>
 
-        {/* Tab-like headers */}
-        <div className="flex justify-center gap-10 mb-10">
-          <div className="flex items-center gap-2 font-semibold text-base" style={{ color: "var(--fg)" }}>
-            <GraduationCap size={20} strokeWidth={1.5} />
-            Education
-          </div>
-          <div className="flex items-center gap-2 font-semibold text-base" style={{ color: "var(--fg)" }}>
-            <Briefcase size={20} strokeWidth={1.5} />
-            Experience
-          </div>
-        </div>
+        <div className="qualification-columns">
+          {/* Education Column */}
+          <div className="qualification-col">
+            <div className="qualification-col-header">
+              <GraduationCap className="qualification-col-header-icon" size={22} strokeWidth={1.5} />
+              <span>Education</span>
+            </div>
 
-        {/* Timeline grid */}
-        <div
-          className="max-w-3xl mx-auto"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 40px 1fr",
-            position: "relative",
-          }}
-        >
-          {/* Center vertical line */}
-          <div
-            style={{
-              gridColumn: "2",
-              gridRow: "1 / 999",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: 8,
-                bottom: 0,
-                width: "1px",
-                background: "var(--border)",
-                left: "50%",
-                transform: "translateX(-50%)",
-              }}
-            />
-          </div>
-
-          {/* Interleaved rows */}
-          {Array.from({ length: Math.max(EDUCATION.length, EXPERIENCE.length) }).map((_, i) => {
-            const edu = EDUCATION[i];
-            const exp = EXPERIENCE[i];
-            return (
-              <div
-                key={i}
-                style={{
-                  display: "contents",
-                }}
-              >
-                {/* Left (Education) */}
-                <div
-                  style={{
-                    gridColumn: "1",
-                    paddingRight: "2rem",
-                    paddingBottom: "2.5rem",
-                    textAlign: "right",
-                  }}
-                >
-                  {edu && (
-                    <div id={edu.id}>
-                      <p className="font-bold text-sm leading-tight mb-1">{edu.title}</p>
-                      <p
-                        className="text-xs mb-2"
-                        style={{ color: "var(--fg-muted)" }}
-                      >
-                        {edu.institution}
-                      </p>
-                      <div
-                        className="inline-flex items-center gap-1 text-xs justify-end"
-                        style={{ color: "var(--fg-subtle)" }}
-                      >
-                        <Calendar size={10} />
-                        {edu.period}
-                      </div>
+            <div className="timeline-container">
+              <div className="timeline-line" />
+              {educationItems.map(({ id, title, institution, period }) => (
+                <div key={id} className="timeline-item">
+                  <div className="timeline-dot" />
+                  <div className="timeline-content">
+                    <span className="timeline-title">{title}</span>
+                    <span className="timeline-institution">{institution}</span>
+                    <div className="timeline-period-row">
+                      <Calendar size={12} strokeWidth={1.5} />
+                      <span>{period}</span>
                     </div>
-                  )}
+                  </div>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                {/* Center dot */}
-                <div
-                  style={{
-                    gridColumn: "2",
-                    display: "flex",
-                    justifyContent: "center",
-                    paddingTop: "6px",
-                    paddingBottom: "2.5rem",
-                    position: "relative",
-                    zIndex: 1,
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 12,
-                      height: 12,
-                      borderRadius: "50%",
-                      background: "var(--fg-muted)",
-                      flexShrink: 0,
-                    }}
-                  />
-                </div>
+          {/* Experience Column */}
+          <div className="qualification-col">
+            <div className="qualification-col-header">
+              <Briefcase className="qualification-col-header-icon" size={22} strokeWidth={1.5} />
+              <span>Experience</span>
+            </div>
 
-                {/* Right (Experience) */}
-                <div
-                  style={{
-                    gridColumn: "3",
-                    paddingLeft: "2rem",
-                    paddingBottom: "2.5rem",
-                  }}
-                >
-                  {exp && (
-                    <div id={exp.id}>
-                      <p className="font-bold text-sm leading-tight mb-1">{exp.title}</p>
-                      <p
-                        className="text-xs mb-2"
-                        style={{ color: "var(--fg-muted)" }}
-                      >
-                        {exp.institution}
-                      </p>
-                      <div
-                        className="inline-flex items-center gap-1 text-xs"
-                        style={{ color: "var(--fg-subtle)" }}
-                      >
-                        <Calendar size={10} />
-                        {exp.period}
-                      </div>
+            <div className="timeline-container">
+              <div className="timeline-line" />
+              {experienceItems.map(({ id, title, institution, period }) => (
+                <div key={id} className="timeline-item">
+                  <div className="timeline-dot" />
+                  <div className="timeline-content">
+                    <span className="timeline-title">{title}</span>
+                    <span className="timeline-institution">{institution}</span>
+                    <div className="timeline-period-row">
+                      <Calendar size={12} strokeWidth={1.5} />
+                      <span>{period}</span>
                     </div>
-                  )}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import { Download, Briefcase, CheckCircle, Headphones } from "lucide-react";
+import ScrollReveal from "@/src/components/ui/ScrollReveal";
 
 const STATS = [
   { icon: Briefcase, label: "Experience", value: "3+ Years Working" },
@@ -9,7 +10,7 @@ const STATS = [
 export default function About() {
   return (
     <section id="about" className="section" style={{ background: "var(--bg-card)" }}>
-      <div className="container">
+      <ScrollReveal className="container">
         {/* Header */}
         <div className="section-header">
           <h2 className="section-title">About Me</h2>
@@ -98,7 +99,7 @@ export default function About() {
             </a>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

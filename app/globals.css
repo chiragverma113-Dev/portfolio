@@ -57,6 +57,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 72px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -65,6 +67,8 @@ body {
   font-family: var(--font-inter, 'Inter', sans-serif);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* ────────────────────────────────────────────────
@@ -633,6 +637,19 @@ body {
 
 @media (max-width: 768px) {
   .section { padding: 3.5rem 0; }
+  .navbar {
+    left: 0.625rem !important;
+    right: 0.625rem !important;
+    width: auto !important;
+    max-width: none !important;
+    transform: none !important;
+    padding: 0 0.75rem !important;
+    top: 0.75rem !important;
+  }
+  .navbar.scrolled {
+    padding: 0 0.75rem !important;
+    top: 0.5rem !important;
+  }
 }
 
 @keyframes wiggle {
@@ -644,4 +661,82 @@ body {
   display: inline-block;
   animation: wiggle 2.5s ease-in-out infinite;
   transform-origin: 70% 70%;
+}
+
+/* ────────────────────────────────────────────────
+   AVATAR MORPHING WAVY ANIMATION
+   ──────────────────────────────────────────────── */
+@keyframes avatar-morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+.avatar-wavy-frame {
+  animation: avatar-morph 8s ease-in-out infinite;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  transition: all 0.5s ease-in-out;
+}
+
+/* ────────────────────────────────────────────────
+   CONTACT SUCCESS & CONFETTI ANIMATIONS
+   ──────────────────────────────────────────────── */
+@keyframes success-pop-in {
+  0% {
+    transform: scale(0.9) translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-success-pop {
+  animation: success-pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes draw-circle {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes draw-check {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: draw-circle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: draw-check 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+}
+
+@keyframes confetti-burst {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+.animate-confetti {
+  animation: confetti-burst 1.5s cubic-bezier(0.25, 1, 0.5, 1) var(--delay) forwards;
 }

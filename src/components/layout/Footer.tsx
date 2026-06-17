@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ArrowUp } from "lucide-react";
-import { FacebookIcon, InstagramIcon, TwitterIcon } from "@/src/components/ui/BrandIcons";
+import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/src/components/ui/BrandIcons";
 
 const LINKS = ["About", "Projects", "Qualification"];
 
@@ -156,9 +156,9 @@ export default function Footer() {
         {/* Social icons */}
         <div className="footer-socials">
           {[
-            { href: "https://facebook.com", label: "Facebook", Icon: FacebookIcon, id: "footer-facebook" },
-            { href: "https://instagram.com", label: "Instagram", Icon: InstagramIcon, id: "footer-instagram" },
-            { href: "https://twitter.com", label: "Twitter", Icon: TwitterIcon, id: "footer-twitter" },
+            { href: "https://github.com/chiragverma113-Dev", label: "GitHub", Icon: GithubIcon, id: "footer-github" },
+            { href: "https://www.linkedin.com/in/chirag-verma-817966226?utm_source=share_via&utm_content=profile&utm_medium=member_ios", label: "LinkedIn", Icon: LinkedinIcon, id: "footer-linkedin" },
+            { href: "https://www.instagram.com/chrgvrma?igsh=MXUwYW9sMThwd2w3MQ%3D%3D&utm_source=qr", label: "Instagram", Icon: InstagramIcon, id: "footer-instagram" },
           ].map(({ href, label, Icon, id }) => (
             <a
               key={id}

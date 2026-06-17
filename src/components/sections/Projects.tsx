@@ -721,7 +721,7 @@ export default function Portfolio() {
         </div>
 
         {/* Filters */}
-        <div className="flex justify-center gap-2" style={{ marginBottom: "2.5rem" }}>
+        <div className="flex flex-wrap justify-center gap-2 px-4" style={{ marginBottom: "2.5rem" }}>
           {FILTERS.map((f) => (
             <button
               key={f}
@@ -758,8 +758,17 @@ export default function Portfolio() {
                 </div>
                 
                 {/* Mock content viewport */}
-                <div className="mock-content-viewport">
-                  {renderMockup(project.id)}
+                <div className="mock-content-viewport" style={{ padding: project.imageUrl ? 0 : "10px" }}>
+                  {project.imageUrl ? (
+                    <img
+                      src={project.imageUrl}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                      style={{ display: "block", width: "100%", height: "100%", objectPosition: "top" }}
+                    />
+                  ) : (
+                    renderMockup(project.id)
+                  )}
                 </div>
 
                 {project.featured && (
@@ -783,9 +792,24 @@ export default function Portfolio() {
                   {project.title}
                 </h3>
                 <div className="flex items-center justify-between">
-                  <div className="btn-link text-sm font-semibold flex items-center gap-1" style={{ color: "var(--fg-muted)" }}>
-                    Demo <ArrowRight size={14} />
-                  </div>
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-link text-sm font-semibold flex items-center gap-1 hover:text-[var(--fg)]"
+                      style={{ color: "var(--fg-muted)", textDecoration: "none" }}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent modal from opening
+                      }}
+                    >
+                      Demo <ArrowRight size={14} />
+                    </a>
+                  ) : (
+                    <div className="btn-link text-sm font-semibold flex items-center gap-1" style={{ color: "var(--fg-muted)" }}>
+                      Demo <ArrowRight size={14} />
+                    </div>
+                  )}
                   <div className="flex flex-wrap gap-1.5">
                     {project.tech.slice(0, 2).map((t) => (
                       <span

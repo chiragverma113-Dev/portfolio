@@ -1,11 +1,9 @@
-import { Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/src/components/ui/BrandIcons";
+import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/src/components/ui/BrandIcons";
 
 const SOCIALS = [
-  { icon: GithubIcon, href: "https://github.com", label: "GitHub", id: "social-github" },
-  { icon: LinkedinIcon, href: "https://linkedin.com", label: "LinkedIn", id: "social-linkedin" },
-  { icon: Mail, href: "mailto:chirag@example.com", label: "Email", id: "social-email" },
-  { icon: TwitterIcon, href: "https://twitter.com", label: "Twitter", id: "social-twitter" },
+  { icon: GithubIcon, href: "https://github.com/chiragverma113-Dev", label: "GitHub", id: "social-github" },
+  { icon: LinkedinIcon, href: "https://www.linkedin.com/in/chirag-verma-817966226?utm_source=share_via&utm_content=profile&utm_medium=member_ios", label: "LinkedIn", id: "social-linkedin" },
+  { icon: InstagramIcon, href: "https://www.instagram.com/chrgvrma?igsh=MXUwYW9sMThwd2w3MQ%3D%3D&utm_source=qr", label: "Instagram", id: "social-instagram" },
 ];
 
 export default function FloatingSocials() {

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { skillCategories } from "@/src/data/skills";
 import ScrollReveal from "@/src/components/ui/ScrollReveal";
+import { Brain, Cpu, Palette, Smartphone, LineChart } from "lucide-react";
 
 const SKILL_ICONS: Record<string, React.ReactNode> = {
   "React.js": (
@@ -140,6 +141,50 @@ const SKILL_ICONS: Record<string, React.ReactNode> = {
       <path d="M12 2C8.1 2 5 5.1 5 9c0 3 2 5.5 4.5 6.5C10.5 17 11 19 12 22c1-3 1.5-5 2.5-6.5C17 14.5 19 12 19 9c0-3.9-3.1-7-7-7zm0 10.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 7.5 12 7.5 14.5 8.6 14.5 10s-1.1 2.5-2.5 2.5z"/>
     </svg>
   ),
+  "Material-UI": (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M0 2.4v19.2l12-6 12 6V2.4L12 8.4z" fill="#0081CB"/>
+    </svg>
+  ),
+  "GitLab": (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="m23.824 11.604-2.883-8.868a.834.834 0 0 0-1.584 0l-2.883 8.868H7.525L4.642 2.736a.834.834 0 0 0-1.584 0L.176 11.604a1.002 1.002 0 0 0 .364 1.121l10.974 7.973a.817.817 0 0 0 .97 0l10.975-7.973a1.002 1.002 0 0 0 .365-1.121Z" fill="#FC6D26"/>
+    </svg>
+  ),
+  "Netlify": (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.09 14.91L6.73 12.8c-.39-.39-.39-1.02 0-1.41L10.91 7.2c.39-.39 1.02-.39 1.41 0l4.18 4.18c.39.39.39 1.02 0 1.41l-4.18 4.18c-.39.38-1.02.38-1.41-.06z" />
+    </svg>
+  ),
+  "Cursor": (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <polygon points="3 3 10.07 19.97 12.58 12.58 19.97 10.07 3 3" />
+      <line x1="13" y1="13" x2="19" y2="19" />
+    </svg>
+  ),
+  "AppScript": (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+    </svg>
+  ),
+  "SQL": (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <ellipse cx="12" cy="5" rx="9" ry="3"/>
+      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+      <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/>
+    </svg>
+  ),
+  "App Sheet": (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M9 17V7l7 5-7 5z" />
+    </svg>
+  ),
+  "Problem-solving": <Brain />,
+  "API Integration": <Cpu />,
+  "Web Design": <Palette />,
+  "Responsive Design": <Smartphone />,
+  "Analytical Thinking": <LineChart />,
 };
 
 export default function Skills() {
@@ -155,7 +200,7 @@ export default function Skills() {
         </div>
 
         {/* Tabs */}
-        <div className="flex justify-center gap-2" style={{ marginBottom: "3.5rem" }}>
+        <div className="flex flex-wrap justify-center gap-2 px-4" style={{ marginBottom: "3.5rem" }}>
           {skillCategories.map((cat, i) => (
             <button
               key={cat.name}

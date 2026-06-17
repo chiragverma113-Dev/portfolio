@@ -19,8 +19,13 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": ["./*"],
+      "react": ["./node_modules/@types/react"],
+      "react-dom": ["./node_modules/@types/react-dom"]
+    },
+    "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types"],
+    "types": []
   },
   "include": [
     "next-env.d.ts",

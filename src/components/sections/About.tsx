@@ -44,7 +44,7 @@ export default function About() {
           </p>
 
           <a
-            href="/Chirag_Verma_Resume (3).pdf (1).pdf"
+            href="/Chirag_Verma_Resume (3).pdf (3).pdf"
             download="Chirag_Verma_Resume.pdf"
             id="about-download-cv"
             className="btn-dark"

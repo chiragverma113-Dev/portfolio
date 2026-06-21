@@ -2,15 +2,13 @@
 
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { projects, Project } from "@/src/data/projects";
-import ProjectModal from "@/src/components/ui/ProjectModal";
+import { projects } from "@/src/data/projects";
 import ScrollReveal from "@/src/components/ui/ScrollReveal";
 
 const FILTERS = ["All", "React", "Next.js", "CSS", "HTML"];
 
 export default function Portfolio() {
   const [filter, setFilter] = useState("All");
-  const [selected, setSelected] = useState<Project | null>(null);
 
   const filtered =
     filter === "All" ? projects : projects.filter((p) => p.category.includes(filter));
@@ -741,11 +739,12 @@ export default function Portfolio() {
               key={project.id}
               id={`project-card-${project.id}`}
               className="project-card-custom"
-              onClick={() => setSelected(project)}
+              onClick={() => project.liveUrl && window.open(project.liveUrl, "_blank", "noopener,noreferrer")}
               role="button"
               tabIndex={0}
-              onKeyDown={(e) => e.key === "Enter" && setSelected(project)}
+              onKeyDown={(e) => e.key === "Enter" && project.liveUrl && window.open(project.liveUrl, "_blank", "noopener,noreferrer")}
               aria-label={`View ${project.title}`}
+              style={{ cursor: project.liveUrl ? "pointer" : "default" }}
             >
               {/* Screenshot mockup */}
               <div className="project-screenshot-wrapper">
@@ -826,8 +825,6 @@ export default function Portfolio() {
           ))}
         </div>
       </ScrollReveal>
-
-      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </section>
   );
 }

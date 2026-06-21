@@ -60,8 +60,8 @@ export default function Navbar() {
         style={{
           height: menuOpen ? "auto" : undefined,
           borderRadius: menuOpen ? "24px" : undefined,
-          padding: menuOpen ? "1.25rem 1.5rem" : undefined,
-          maxHeight: menuOpen ? "420px" : scrolled ? "50px" : "56px",
+          padding: menuOpen ? "1.5rem 1.5rem" : undefined,
+          maxHeight: menuOpen ? "450px" : scrolled ? "50px" : "56px",
           transition: "all 0.3s ease-in-out",
           overflow: "hidden"
         }}
@@ -78,7 +78,7 @@ export default function Navbar() {
           >
             Chirag Verma
           </button>
-          
+
           <div className="flex items-center gap-1.5 sm:gap-2">
             <ThemeToggle />
             <button
@@ -94,11 +94,9 @@ export default function Navbar() {
 
         {/* Desktop navigation bar & Mobile vertical menu */}
         <div
-          className={`${
-            menuOpen ? "flex" : "hidden"
-          } md:flex flex-col md:flex-row items-center gap-4 md:gap-7 py-1 w-full justify-center ${
-            menuOpen ? "mt-4 animate-fade-in" : ""
-          }`}
+          className={`${menuOpen ? "flex" : "hidden"
+            } md:flex flex-col md:flex-row items-center gap-4 md:gap-7 py-1 w-full justify-center ${menuOpen ? "mt-4 animate-fade-in" : ""
+            }`}
         >
           {/* Section links */}
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 w-full md:w-auto">
@@ -124,7 +122,7 @@ export default function Navbar() {
 
           {/* Divider line */}
           <div className="hidden md:block h-5 w-[1px] bg-neutral-300/30 dark:bg-neutral-700/30 shrink-0" />
-          <div className="block md:hidden h-[1px] w-full bg-neutral-300/20 dark:bg-neutral-700/20 shrink-0 my-1" />
+          <div className="block md:hidden h-[1px] w-full bg-neutral-300/20 dark:bg-neutral-700/20 shrink-0 my-2" />
 
           {/* Social icons */}
           <div className="flex items-center gap-3.5 justify-center py-1">

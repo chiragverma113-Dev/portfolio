@@ -29,9 +29,7 @@ export default function ScrollReveal({
           timeoutId = setTimeout(() => {
             el.classList.add("visible");
           }, delay);
-        } else {
-          clearTimeout(timeoutId);
-          el.classList.remove("visible");
+          observer.unobserve(el);
         }
       },
       { threshold: 0.10, rootMargin: "0px 0px -40px 0px" }

@@ -99,7 +99,7 @@ body {
 ──────────────────────────────────────────────── */
 .container {
   max-width: 1080px;
-  margin: 0 auto;
+  margin: 0 auto !important;
   padding: 0 1.5rem;
 }
 
@@ -482,6 +482,7 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border);
   box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  position: relative;
 }
 
 /* ────────────────────────────────────────────────
@@ -638,17 +639,23 @@ body {
 @media (max-width: 768px) {
   .section { padding: 3.5rem 0; }
   .navbar {
-    left: 0.625rem !important;
-    right: 0.625rem !important;
-    width: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 1.25rem) !important;
     max-width: none !important;
-    transform: none !important;
     padding: 0 0.75rem !important;
     top: 0.75rem !important;
   }
   .navbar.scrolled {
     padding: 0 0.75rem !important;
     top: 0.5rem !important;
+  }
+  .navbar.menu-open {
+    padding: 1.5rem !important;
+    background: rgba(245, 245, 247, 0.95) !important;
+  }
+  .dark .navbar.menu-open {
+    background: rgba(18, 18, 20, 0.95) !important;
   }
 }
 

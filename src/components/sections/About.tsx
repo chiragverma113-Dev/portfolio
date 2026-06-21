@@ -43,7 +43,12 @@ export default function About() {
             <strong style={{ color: "var(--fg)" }}>Zillion Analytics Private Limited</strong> — let's engineer your growth.
           </p>
 
-          <a href="/resume.pdf" download id="about-download-cv" className="btn-dark">
+          <a
+            href="/Chirag_Verma_Resume (3).pdf (1).pdf"
+            download="Chirag_Verma_Resume.pdf"
+            id="about-download-cv"
+            className="btn-dark"
+          >
             <Download size={16} />
             Download CV
           </a>
